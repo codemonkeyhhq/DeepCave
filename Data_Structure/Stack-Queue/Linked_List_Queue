@@ -1,0 +1,29 @@
+
+
+public class LinkQueue {
+	private Node first=null;
+	private Node last=null;
+	private class Node{
+		String item;
+		Node next;
+	}
+	public boolean isEmpty() {
+		return first==null;
+	}
+	public void push(String it) {
+        Node oldlast=last;
+      last=new Node();
+        last.item=it;
+        last.next=null;
+        if(isEmpty())first=last;
+        else oldlast.next=last;
+	}
+
+	public String pop() {
+		Node result =first;
+		first=first.next;
+		if(isEmpty())last=null;
+		return result.item;
+	}
+
+}
