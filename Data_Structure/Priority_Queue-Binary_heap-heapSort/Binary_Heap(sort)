@@ -1,0 +1,52 @@
+
+public class Binary_heap <Key extends Comparable<Key>>{
+	private Key[]pq;
+	private int N;
+	public Binary_heap(int Capacity) {
+		pq=(Key[]) new Comparable[Capacity+1];
+	}
+	private void swim(int k) {
+    while(k>1&& pq[k/2].compareTo(pq[k])<0) {
+    	swap(pq,k/2,k);
+    	k=k/2;
+    }
+    
+}
+	public  void sort() {
+		int N=pq.length;
+		for(int k=N/2;k>0;k--)sink(k,N);
+		while(N>1) {
+			swap(pq,1,N--);
+			sink(1,N);
+		}
+	}
+	public boolean isEmpty() {
+		return N==0;
+	}
+	public static void swap(Comparable[] nums, int i, int j) {
+		Comparable aux = nums[i];
+		nums[i] = nums[j];
+		nums[j] = aux;
+	}
+	public void insert(Key x) {
+		pq[++N]=x;
+		swim(N);
+	}
+	public void sink(int k,int N) {
+		while(2*k<=N) {
+			int j=2*k;
+			if(j<N&& pq[j].compareTo(pq[j+1])<0)j++;
+			if(pq[k].compareTo(pq[j])>=0)break;
+			swap(pq,k,j);
+			k=j;
+		}
+	}
+	public Key delMax() {
+		Key max=pq[1];
+		swap(pq,1,N--);
+		sink(1,N);
+		pq[N+1]=null;
+		return max;
+	}
+	
+}
