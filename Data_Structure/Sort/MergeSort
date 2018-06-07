@@ -1,0 +1,28 @@
+public class MergeSort {
+	public void merge(int[]o,int[]aux,int low,int mid,int high) {
+		for(int k=low;k<high;k++) aux[k]=o[k];
+		int i=low,j=mid+1;
+		for(int k=low;k<high;k++) {
+			if(i>mid)o[k]=aux[j++];
+			else if (j>high) o[k]=aux[i++];
+			else if(aux[j]<aux[i])o[k]=aux[j++];
+			else                  o[k]=aux[i++];
+		}
+	}
+	public void sort(int[]nums,int[]aux,int low,int high) {
+	  if(high<=low)return;
+    int mid=(low+high)/2;
+		sort(nums,aux,low,mid);
+		sort(nums,aux,mid+1,high);
+		merge(nums,aux,low,mid,high);
+		
+		
+	}
+	public void swap(int[]nums,int i,int j) {
+		int aux=nums[i];
+		nums[i]=nums[j];
+		nums[j]=aux;
+	}
+
+
+}
