@@ -1,0 +1,25 @@
+
+public class ArrayQueue {
+
+
+	private String[]s;
+	private int N=0;
+	
+	public ArrayQueue(int Capacity) {
+		s=new String[Capacity];
+	}
+    public boolean isEmpty() {
+    	return N==0;
+    }
+    public void push(String item) {
+    	s[N++]=item;
+    }
+    public String pop() {
+        String result=s[1];
+    	for(int a=0;a<N-1;a++) {
+    	s[a]=s[a+1];	
+    	}
+    	return result;
+    	
+    }
+}
