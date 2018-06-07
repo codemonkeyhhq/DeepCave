@@ -1,0 +1,30 @@
+import java.util.Collections;
+
+public class QuickSort {
+	
+	private int partition(Comparable []a,int low,int high) {
+		int i=low,j=high+1;
+		while(true) {
+			while(a[++i].compareTo(a[low])<0) if(i==high)break;
+			while(a[--j].compareTo(a[low])>=0)if(j==low)break;
+			if(i>=j)break;
+			swap(a,i,j);
+		}
+		swap(a,low,j);
+		return j;
+		
+	} 
+	public void sort(Comparable[]a,int low,int high) {
+		if(low>=high)return;
+		int j=partition(a,low,high);
+		sort(a,j+1,high);
+		sort(a,low,j-1);
+	}
+	
+    public void swap(Comparable[]a,int i,int j) {
+		Comparable aux=a[i];
+		a[i]=a[j];
+		a[j]=aux;
+	}
+	
+}
