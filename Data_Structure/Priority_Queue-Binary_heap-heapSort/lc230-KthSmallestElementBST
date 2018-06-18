@@ -1,0 +1,29 @@
+#Definition for a binary tree node
+//
+public class TreeNode(){
+int val;
+TreeNode left,right;
+TreeNode(int i){
+val=i;}
+}
+//
+class solution{
+int result=0;
+int count=0;
+public int kthSmallest(Tree root,int k){
+traverse(root,k);
+return result;
+}
+
+//Kth smallest means that element is bigger than k-1 elements;So Every left traverse makes count plus one;
+We start at left Bottom.
+
+public void traverse(Tree root,int k){
+if(root==null)return;
+traverse(root.left,k);
+count++;
+if(count==k)result=root.val;
+traverse(root.right,k);
+}
+
+}
